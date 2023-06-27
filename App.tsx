@@ -1,117 +1,81 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
   View,
+  Text,
+  Pressable,
+  StatusBar,
 } from 'react-native';
+import {Sizing, Typography, Outlines, Colors, Buttons} from './styles';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <>
+      <SafeAreaView style={Sizing.flex}>
+        <View style={style.container}>
+          <View style={style.headerContainer}>
+            <Text style={style.headerText}>Captain Klipper</Text>
+            <Text style={style.subheaderText}>
+              Kick-start your 3D Printing workflow with simple, organized
+              interface.
+            </Text>
+          </View>
+          <View style={style.bodyContainer}></View>
+          <Pressable
+            style={Buttons.applyOpacity(style.button)}
+            onPress={() => {
+              console.log('Button has been pressed');
+            }}>
+            <Text style={style.buttonText}>Buttons are Useful</Text>
+          </Pressable>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+const style = StyleSheet.create({
+  container: {
+    ...Sizing.flex,
+    padding: Sizing.x10,
+    backgroundColor: Colors.neutral.s500,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  headerContainer: {
+    marginBottom: Sizing.x20,
+    paddingBottom: Sizing.x20,
+    borderBottomWidth: Outlines.borderWidth.hairline,
+    borderColor: Colors.neutral.s200,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  headerText: {
+    ...Typography.bold.x40,
+    marginBottom: Sizing.x10,
+    color: Colors.neutral.s100,
   },
-  highlight: {
-    fontWeight: '700',
+  subheaderText: {
+    ...Typography.semibold.x30,
+    color: Colors.neutral.s200,
+  },
+  bodyContainer: {
+    ...Sizing.flex,
+    marginBottom: Sizing.x20,
+  },
+  bodyText: {
+    ...Typography.regular.x20,
+    marginBottom: Sizing.x20,
+  },
+  button: {
+    ...Buttons.bar.primary,
+    marginBottom: Sizing.x10,
+  },
+  buttonText: {
+    ...Buttons.barText.primary,
+  },
+  secondaryButton: {
+    ...Buttons.bar.secondary,
+  },
+  secondaryButtonText: {
+    ...Buttons.barText.secondary,
   },
 });
 
