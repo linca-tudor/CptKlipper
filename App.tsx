@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  Pressable,
-  StatusBar,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Text, Pressable} from 'react-native';
 import {Sizing, Typography, Outlines, Colors, Buttons} from './styles';
 
 const App = () => {
